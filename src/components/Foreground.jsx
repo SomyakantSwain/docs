@@ -12,7 +12,6 @@ function Foreground() {
     x[id].desc = desc;
     setData(x);
     localStorage.setItem("data", JSON.stringify(x))
-    alert("data saved successfully!")
     seteditCard(null)
   }
   useEffect(() => {
@@ -22,39 +21,48 @@ function Foreground() {
       }
     }
   })
-  console.log(JSON.stringify([
-    {
-      desc: "Somyakant Swain",
-      filesize: ".8mb",
-      close: false,
-      tag: {
-        isOpen: true,
-        tagTitle: "Download  Now",
-        tagColor: "blue",
-      },
-    },
-    {
-      desc: "Suvranshu Choudhury",
-      filesize: ".8mb",
-      close: true,
-      tag: {
-        isOpen: true,
-        tagTitle: "Download  Now",
-        tagColor: "blue",
-      },
-    },
-    {
-      desc: "Anshuman Panda",
-      filesize: ".8mb",
-      close: true,
-      tag: {
-        isOpen: true,
-        tagTitle: "upload",
-        tagColor: "green",
-      },
-    },
-  ]));
+
   // useEffect ru data anibu and then sei data ku setData(<eithi purei debu>)
+
+  useEffect(() => {
+
+    const preCheck = localStorage.getItem("data");
+
+    if (preCheck === null || preCheck === undefined || !preCheck)
+      localStorage.setItem("data", JSON.stringify([
+        {
+          desc: "The Bible",
+          filesize: ".8mb",
+          close: false,
+          tag: {
+            isOpen: true,
+            tagTitle: "Download Now",
+            tagColor: "blue",
+          },
+        },
+        {
+          desc: "Srimad Bhagwat Geeta",
+          filesize: ".8mb",
+          close: true,
+          tag: {
+            isOpen: true,
+            tagTitle: "Download Now",
+            tagColor: "blue",
+          },
+        },
+        {
+          desc: "Somyakanta Swain",
+          filesize: ".8mb",
+          close: true,
+          tag: {
+            isOpen: true,
+            tagTitle: "upload",
+            tagColor: "green",
+          },
+        },
+      ]))
+  }, [])
+
   return (
     <div
       ref={ref}
